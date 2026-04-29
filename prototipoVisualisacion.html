@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <style>
+#map { height: 100vh; margin: 0; position: relative; }
+    #btn-inicio {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      z-index: 1000;
+      padding: 8px 16px;
+      background: rgb(255, 255, 255);
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 14px;
+      cursor: pointer;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.2);
+    }
+    #btn-inicio:hover { background: #f0f0f0; }
+  </style>
+</head>
+<body>
+  <div id="map">
+    <button id="btn-inicio" onclick="volverAlInicio()">Volver al inicio</button>
+  </div>
+  <script>
+    const map = L.map('map').setView([9.99074, -83.03596], 13);
+    //hay que descargar la extencion live server para correrlo sin los mensajes de pirateria de cloude
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '© OpenStreetMap contributors'
+    }).addTo(map);
+
+    //Mensajes de los marcadores
+    //limon centro
+    L.marker([9.99074, -83.03596])
+      .addTo(map)
+      .bindPopup('<b>Limón</b><br>Puerto Caribe de Costa Rica')
+      .openPopup();
+
+    //tengo que ver pero alguna playa
+    L.marker([9.7319895, -82.8211192])
+      .addTo(map)
+      .bindPopup('<b>Limón</b><br>playa prueba 1')
+      .openPopup();
+
+    L.marker([9.643367832448668, -82.68753794816715])
+      .addTo(map)
+      .bindPopup('<b>Limón</b><br>Punta Uva')
+      .openPopup();
+
+    function volverAlInicio() {
+      map.setView([9.99074, -83.03596], 13);
+    }
+  </script>
+</body>
+</html>
